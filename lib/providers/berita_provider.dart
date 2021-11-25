@@ -1,13 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:slip/models/berita_model.dart';
+import 'package:slip/services/berita_service.dart';
 
 class BeritaProvider extends ChangeNotifier {
-  BeritaModel? _beritaModel;
+  List<BeritaModel>? _listBerita;
 
-  BeritaModel get beritaModel => _beritaModel!;
+  List<BeritaModel> get beritaModel => _listBerita!;
 
-  set beritaModel(BeritaModel beritaModel) {
-    _beritaModel = beritaModel;
+  set beritaModel(List<BeritaModel> listBerita) {
+    _listBerita = listBerita;
     notifyListeners();
   }
-} 
+
+  Future<List<BeritaModel>> getAllBerita() async {
+    var data = await BeritaService.getAllBerita();
+    _listBerita = data;
+    return _listBerita!;
+  }
+}

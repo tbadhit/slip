@@ -4,6 +4,7 @@ import 'package:slip/page/salary/detail_salary_page.dart';
 import 'package:slip/page/salary/salary_page.dart';
 import 'package:slip/providers/auth_providers.dart';
 import 'package:slip/providers/berita_provider.dart';
+import 'package:slip/providers/konten_provider.dart';
 import 'package:slip/providers/penggajian_provider.dart';
 import 'page/about/about_page.dart';
 import 'page/auth/signin/sign_in_page.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => BeritaProvider()),
         ChangeNotifierProvider(create: (context) => PenggajianProvider()),
+        ChangeNotifierProvider(create: (context) => KontenProvider()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       builder: (context, _) {

@@ -4,7 +4,7 @@ import 'package:slip/models/penggajian_model.dart';
 
 class PenggajianService {
 
-  Future<List<PenggajianModel>> getPenggajian() async {
+  Future<Karyawan> getPenggajian() async {
   
     Uri url = Uri.parse('https://salary.kerjainaja.id/api/penggajian/4');
     var headers = {
@@ -16,14 +16,10 @@ class PenggajianService {
     // print(response.body);
 
     if(response.statusCode == 200) {
-      List data = jsonDecode(response.body)['karyawan']['gaji'];
-      List<PenggajianModel> list = [];
+      var data = jsonDecode(response.body);
+      var result= data['karyawan'];
 
-      for(var item in data) {
-        list.add(PenggajianModel.fromJson(item));
-      }
-
-      return list;
+      return Karyawan.fromJson(result);
 
     } else {
       throw Exception('Gagal memuat data karyawan');

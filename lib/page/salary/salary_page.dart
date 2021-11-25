@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:slip/models/karyawan_model.dart';
+import 'package:slip/models/penggajian_model.dart';
+import 'package:slip/providers/auth_providers.dart';
+import 'package:slip/providers/penggajian_provider.dart';
 import 'package:slip/providers/theme_provider.dart';
 import 'package:slip/theme/theme.dart';
 
@@ -10,22 +14,13 @@ class SalaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    PenggajianProvider authProvider = Provider.of<PenggajianProvider>(context);
+    Karyawan karyawanModel = authProvider.data;
+
     final color =  Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
     ? kAmber : primaryColor;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: color,
-        title: Text('Penggajian', style: GoogleFonts.montserrat()),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.pushNamed(context, '/main-page');
-          },
-        ),
-      ),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,14 +49,14 @@ class SalaryPage extends StatelessWidget {
                               TextStyle(color: color, fontSize: 15))),
                   SizedBox(width: 10),
                   Text(
-                    'Fulan',
+                    karyawanModel.namaKaryawan,
                     // penggajianModel.karyawan.namaKaryawan,
                       style: GoogleFonts.montserrat(
                           textStyle:
                               TextStyle(color: color, fontSize: 15))),
                   SizedBox(width: 50),
                   Text(
-                    '31, Januari 2021',
+                    karyawanModel.tanggalMasuk,
                     // penggajianModel.karyawan.namaKaryawan,
                       style: GoogleFonts.montserrat(
                           textStyle:
@@ -81,7 +76,6 @@ class SalaryPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

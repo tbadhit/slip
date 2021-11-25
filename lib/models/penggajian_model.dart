@@ -1,25 +1,25 @@
 import 'gaji_model.dart';
 
-class PenggajianModel {
-  PenggajianModel({
-    required this.karyawan,
-  });
-  Karyawan karyawan;
+// class PenggajianModel {
+//   PenggajianModel({
+//     required this.karyawan,
+//   });
+//   Karyawan karyawan;
   
-  factory PenggajianModel.fromJson(Map<String, dynamic> json){
-    return PenggajianModel(
-    karyawan : Karyawan.fromJson(json['karyawan'])
-    );
-  }
+//   factory PenggajianModel.fromJson(Map<String, dynamic> json){
+//     return PenggajianModel(
+//     karyawan : Karyawan.fromJson(json['karyawan'])
+//     );
+//   }
 
-  Map<String, dynamic> toJson() {
-    return{
-    'karyawan' : karyawan.toJson()
-    };
-  }
+//   Map<String, dynamic> toJson() {
+//     return{
+//     'karyawan' : karyawan.toJson()
+//     };
+//   }
 
-  void add(PenggajianModel penggajianModel) {}
-}
+//   void add(PenggajianModel penggajianModel) {}
+// }
 
 class Karyawan {
   Karyawan({

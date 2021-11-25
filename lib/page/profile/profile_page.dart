@@ -22,19 +22,7 @@ class ProfilePage extends StatelessWidget {
     final color =  Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
     ? kAmber : primaryColor;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: color,
-        title: Text('Profile', style: GoogleFonts.montserrat()),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.pushNamed(context, '/main-page');
-          },
-        ),
-      ),
-      body: Container(
+    return Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: <Widget>[
@@ -111,7 +99,6 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

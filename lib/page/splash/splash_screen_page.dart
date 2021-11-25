@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:slip/providers/berita_provider.dart';
+import 'package:slip/providers/konten_provider.dart';
 import 'package:slip/providers/penggajian_provider.dart';
 import 'package:slip/providers/theme_provider.dart';
 import 'package:slip/theme/theme.dart';
@@ -35,6 +37,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   getInit() async {
     await Provider.of<PenggajianProvider>(context, listen: false).getPenggajian();
+    await Provider.of<KontenProvider>(context, listen: false).getAllKonten();
+    await Provider.of<BeritaProvider>(context, listen: false).getAllBerita();
     Navigator.pushNamed(context, '/sign-in');
   }
 

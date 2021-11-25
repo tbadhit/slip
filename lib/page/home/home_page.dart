@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:slip/models/karyawan_model.dart';
+import 'package:slip/models/konten_model.dart';
 import 'package:slip/providers/auth_providers.dart';
+import 'package:slip/providers/konten_provider.dart';
 import 'package:slip/providers/theme_provider.dart';
 import 'package:slip/theme/theme.dart';
 import 'mode_widget.dart';
@@ -18,67 +20,13 @@ class HomePage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     KaryawanModel karyawanModel = authProvider.karyawanModel;
 
+    KontenProvider kontenProvider = Provider.of<KontenProvider>(context);
+    List<KontenModel> listKonten = kontenProvider.kontenModel;
+
     final color =  Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
     ? kAmber : primaryColor;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: color,
-        title: Text('Salariy.id',
-        style: GoogleFonts.montserrat(
-        )
-        ),
-        centerTitle: true
-      ),
-      drawer: Drawer(
-        child: Material(
-          child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            children: <Widget>[
-              SizedBox(height: 50),
-              Row(
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('images/ic_profile.png'),
-                  ),
-                  SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        karyawanModel.namaKaryawan,
-                        // '',
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(color: color),
-                        ),
-                      ),
-                      Text(
-                        karyawanModel.status,
-                        // '',
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(color: color),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: 30),
-              // DrawerKaryawanWidget(),
-              // DrawerTunjanganWidget(),
-              // DrawerJabatanWidget(),
-              // DrawerKontenWidget(),
-              // SizedBox(height: 25),
-              Divider(color: Colors.grey),
-              DrawerTentangWidget(),
-              DrawerModeWidget(),
-            ],
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: Container(
+    return Container(
           child: ListView(
             children: <Widget>[
               Stack(
@@ -182,8 +130,7 @@ class HomePage extends StatelessWidget {
                       autoPlay: true,
                       autoPlayInterval: Duration(seconds: 3),
                       autoPlayAnimationDuration: Duration(milliseconds: 800)),
-                  items: [
-                    Container(
+                  items: listKonten.map((konten) => Container(
                       margin: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
@@ -195,7 +142,7 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Lorem Ipsum',
+                            konten.judulKonten,
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
                                   color: kWhiteColor,
@@ -206,7 +153,7 @@ class HomePage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Text(
-                                'Is simply dummy text of the printing and typesetting industry',
+                                konten.isiKonten,
                                 style: GoogleFonts.montserrat(
                                   textStyle: TextStyle(
                                     color: kWhiteColor,
@@ -217,8 +164,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ),).toList()
                 ),
               ),
               SizedBox(height: 20),
@@ -253,9 +199,7 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
+        );
   }
 
   Widget buildCard(String name, String imgPath, String employee, context) {

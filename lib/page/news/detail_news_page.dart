@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:slip/models/berita_model.dart';
 import 'package:slip/page/news/list_news_item.dart';
 import 'package:slip/theme/theme.dart';
 
 class DetailNewsPage extends StatelessWidget {
   
-  final ListItemNews itemNews;
+  final BeritaModel itemNews;
   DetailNewsPage({required this.itemNews});
 
   @override
@@ -22,7 +23,7 @@ class DetailNewsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Image.network(itemNews.imgUrl!,
+                  Image.network("https://puprpkpp.riau.go.id/asset/img/default-image.png",
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,),
@@ -32,7 +33,7 @@ class DetailNewsPage extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          itemNews.newsTitle!,
+                          itemNews.judulBerita,
                           // beritaModel.judulBerita,
                           style: GoogleFonts.montserrat(
                             textStyle:
@@ -44,7 +45,7 @@ class DetailNewsPage extends StatelessWidget {
                           children: <Widget>[
                             Icon(Icons.person),
                             Text(
-                              itemNews.author!,
+                              itemNews.penerbit,
                               // beritaModel.penerbit,
                               style: GoogleFonts.montserrat(
                                 textStyle:
@@ -54,7 +55,7 @@ class DetailNewsPage extends StatelessWidget {
                             SizedBox(width: 10,),
                             Icon(Icons.date_range),
                             Text(
-                              itemNews.date!,
+                              itemNews.tanggalTerbit,
                               // beritaModel.tanggalTerbit,
                               style: GoogleFonts.montserrat(
                                 textStyle:
@@ -64,9 +65,7 @@ class DetailNewsPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 20,),
-                        Text(
-                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-                          // beritaModel.isiBerita,
+                        Text(itemNews.isiBerita,
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                             fontSize: 18  
@@ -86,7 +85,7 @@ class DetailNewsPage extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.arrow_back_ios_new,
-                  color: kWhiteColor,
+                  color: Colors.black,
                 ),
               ),
             ),
